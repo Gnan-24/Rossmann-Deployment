@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rossmann Sales Prediction</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+<body>
+    <h2>Rossmann Sales Prediction</h2>
+
+    <form action="/predict" method="post">
+        <label>Store:</label>
+        <input type="number" name="Store" required><br><br>
+
+        <label>Day Of Week (1-7):</label>
+        <input type="number" name="DayOfWeek" required><br><br>
+
+        <label>Promo (0 or 1):</label>
+        <input type="number" name="Promo" required><br><br>
+
+        <label>School Holiday (0 or 1):</label>
+        <input type="number" name="SchoolHoliday" required><br><br>
+
+        <button type="submit">Predict Sales</button>
+    </form>
+
+</body>
+</html>
