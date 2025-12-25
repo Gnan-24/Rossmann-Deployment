@@ -3,29 +3,42 @@
 <head>
     <title>Rossmann Sales Prediction</title>
 </head>
-<style>
-    body{
-        text-align: center;
-    }
-</style>
 <body>
-    <h2>Rossmann Sales Prediction</h2>
 
-    <form action="/predict" method="post">
-        <label>Store:</label>
+    <h1>Rossmann Sales Prediction</h1>
+
+    <form method="post" action="/predict">
+
+        <label>Store:</label><br>
         <input type="number" name="Store" required><br><br>
 
-        <label>Day Of Week (1-7):</label>
-        <input type="number" name="DayOfWeek" required><br><br>
+        <label>Date:</label><br>
+        <input type="date" name="Date" required><br><br>
 
-        <label>Promo (0 or 1):</label>
-        <input type="number" name="Promo" required><br><br>
+        <label>Promo:</label><br>
+        <select name="Promo">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
 
-        <label>School Holiday (0 or 1):</label>
-        <input type="number" name="SchoolHoliday" required><br><br>
+        <label>School Holiday:</label><br>
+        <select name="SchoolHoliday">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
 
         <button type="submit">Predict Sales</button>
+
     </form>
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+
+    {% if prediction %}
+        <h2>Predicted Sales: {{ prediction }}</h2>
+    {% endif %}
 
 </body>
 </html>
