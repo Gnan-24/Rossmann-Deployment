@@ -2,43 +2,133 @@
 <html>
 <head>
     <title>Rossmann Sales Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 16px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            font-size: 18px;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #ffe6e6;
+            border-left: 4px solid #cc0000;
+            color: #a80000;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
 </head>
+
 <body>
 
+<div class="container">
     <h1>Rossmann Sales Prediction</h1>
+    <div class="subtitle">
+        Predict daily sales using historical store data
+    </div>
 
     <form method="post" action="/predict">
 
-        <label>Store:</label><br>
-        <input type="number" name="Store" required><br><br>
+        <label>Store Number</label>
+        <input type="number" name="Store" placeholder="e.g. 1" required>
 
-        <label>Date:</label><br>
-        <input type="date" name="Date" required><br><br>
+        <label>Date</label>
+        <input type="date" name="Date" required>
 
-        <label>Promo:</label><br>
+        <label>Promo</label>
         <select name="Promo">
             <option value="0">No</option>
             <option value="1">Yes</option>
-        </select><br><br>
+        </select>
 
-        <label>School Holiday:</label><br>
+        <label>School Holiday</label>
         <select name="SchoolHoliday">
             <option value="0">No</option>
             <option value="1">Yes</option>
-        </select><br><br>
+        </select>
 
         <button type="submit">Predict Sales</button>
-
     </form>
 
-    {% if error %}
-    <p style="color:red;">{{ error }}</p>
-    {% endif %}
-
-
     {% if prediction %}
-        <h2>Predicted Sales: {{ prediction }}</h2>
+        <div class="result">
+            💰 <strong>Predicted Sales:</strong> {{ prediction }}
+        </div>
     {% endif %}
+
+    {% if error %}
+        <div class="error">
+            ⚠️ {{ error }}
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        Powered by Machine Learning • Deployed on Render
+    </div>
+</div>
 
 </body>
 </html>
